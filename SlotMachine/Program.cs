@@ -13,107 +13,78 @@ namespace MyApp
             const int LOW_NUMBER = 1;
             const int HIGH_NUMBER = 10;
 
-            int[,] slotMachine = new int[ROWS, COLUMNS];
-            int[,] slotMachine2 = new int[ROWS, COLUMNS];
-            int[,] slotMachine3 = new int[ROWS, COLUMNS];
-            
             int[,] slots = new int[ROWS, COLUMNS];
 
+
             Console.WriteLine("Please play the Slot Machine");
-            
-            
+            Console.WriteLine("Press 1 for horizontal win");
+            Console.WriteLine("Press 2 for vertical win");
+            Console.WriteLine("Press 3 for diagonal win");
+            int choice = int.Parse(Console.ReadLine());
 
-            for (int i = 0; i < ROWS; i++)
+
+            for (int k = 0; k < ROWS; k++)
             {
                 for (int j = 0; j < COLUMNS; j++)
                 {
-                    slotMachine[i, j] = rng.Next(LOW_NUMBER, HIGH_NUMBER);
-                }
-            }
-
-            for (int i = 0; i < ROWS; i++)
-            {
-                for (int j = 0; j < COLUMNS; j++)
-                {
-                    Console.Write(slotMachine2[i, j]);
+                    slots[k, j] = rng.Next(LOW_NUMBER, HIGH_NUMBER);
                 }
 
-                Console.WriteLine();
-            }
-            for (int i = 0; i < ROWS; i++)
-            {
-                for (int j = 0; j < COLUMNS; j++)
-                {
-                    slotMachine3[i, j] = rng.Next(LOW_NUMBER, HIGH_NUMBER);
-                }
-            }
-            Console.WriteLine();
-            
-            for (int i = 0; i < ROWS; i++)
-            {
-                for (int j = 0; j < COLUMNS; j++)
-                {
-                    Console.Write(slotMachine[i, j]);
-                }
-               
-                Console.WriteLine();
+                Console.WriteLine("\nSlot Machine:");
                 
-            }
-            for (int i = 0; i < ROWS; i++)
-            {
-                for (int j = 0; j < COLUMNS; j++)
+                for (int i = 0; i < ROWS; i++)
                 {
-                    slotMachine2[i, j] = rng.Next(LOW_NUMBER, HIGH_NUMBER);
-                }
-            }
-            Console.WriteLine();
-            
-            for (int i = 0; i < ROWS; i++)
-            {
-                for (int j = 0; j < COLUMNS; j++)
-                {
-                    Console.Write(slotMachine3[i, j]);
-                }
-                Console.Write(slots[i, j].ToString().PadLeft(4));
-            }
-            bool isWin = false;
-            for (int i = 0; i < COLUMNS; i++)
-            {
-                if (slotMachine[i, 0] == slotMachine[i, 1] && slotMachine[i, 1] == slotMachine[i, 2])
-                {
+                    for (int j = 0; j < COLUMNS; j++)
+                    {
+                        Console.Write(slots[i, j].ToString().PadLeft(4));
+                    }
 
-                }
-                bool isWin2 = true;
-                for (int j = 0; j < COLUMNS; j++)
-                {
-                    if (slotMachine2[j, 0] == slotMachine2[j, 1] && slotMachine2[j, 1] == slotMachine2[j, 2])
-                    {
-
-                        for (int k = 0; k < COLUMNS; k++)
-                            if (slotMachine3[k, 0] == slotMachine3[k, 1] && slotMachine3[k, 1] == slotMachine3[k, 2])
-                            {
-                                isWin = true;
-                                break;
-                            }
-                    }
-                    if (slots[i, j] % 2 == 0)
-                    {
-                        Console.Write(slotMachine.PadLeft(4));
-                    }
-                    else if(isWin2)
-                    {
-                        Console.Write(slotMachine2.PadLeft(4));
-                    }
-                    else 
-                    {
-                        Console.Write(slotMachine3.PadLeft(4));
-                    }
                     Console.WriteLine();
                 }
-                Console.WriteLine(isWin ? "Congratulations, you win!" : "Try again!");
-                    break;
+
+                bool isWin = false;
+                if (choice == 1)
+                {
+                    for (int i = 0; i < ROWS; i++)
+                    {
+                        if (slots[i, 0] == slots[i, 1] && slots[i, 1] == slots[i, 2])
+                        {
+                            isWin = true;
+                            break;
+                        }
+                    }
+                }
+
+                else if (choice == 2)
+                {
+                    for (int j = 0; j < COLUMNS; j++)
+                    {
+                        if (slots[j, 0] == slots[j, 1] && slots[j, 1] == slots[j, 2])
+                        {
+                            isWin = true;
+                            break;
+                        }
+                    }
+                }
+                else if (choice == 3)
+
+                    if ((slots[0, 0] == slots[1, 1] && slots[1, 1] == slots[2, 2]) ||
+
+                        (slots[0, 2] == slots[1, 1] && slots[1, 1] == slots[2, 2]))
+
+                    {
+                        isWin = true;
+                    }
+
+                Console.WriteLine(isWin ? "\n Congratulations, you win!" : "\nTry again!");
+
             }
+
         }
-    } }
+
+    }
 }
+    
+
+
 
