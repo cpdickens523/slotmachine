@@ -14,6 +14,7 @@ namespace MyApp
             const int HIGH_NUMBER = 10;
 
             int[,] slots = new int[ROWS, COLUMNS];
+           
 
 
             Console.WriteLine("Please play the Slot Machine");
@@ -29,6 +30,9 @@ namespace MyApp
                 {
                     slots[k, j] = rng.Next(LOW_NUMBER, HIGH_NUMBER);
                 }
+                slots[0, 0] = 3;
+                slots[0, 1] = 3;
+                slots[0, 2] = 3;
 
                 Console.WriteLine("\nSlot Machine:");
                 
@@ -65,13 +69,13 @@ namespace MyApp
                             break;
                         }
                     }
+                    
                 }
                 else if (choice == 3)
 
                     if ((slots[0, 0] == slots[1, 1] && slots[1, 1] == slots[2, 2]) ||
 
-                        (slots[0, 2] == slots[1, 1] && slots[1, 1] == slots[2, 2]))
-
+                        (slots[0, 2] == slots[1, 1] && slots[1, 1] == slots[2, 0]))
                     {
                         isWin = true;
                     }
