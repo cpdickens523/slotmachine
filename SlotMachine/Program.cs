@@ -30,11 +30,14 @@ namespace MyApp
                 {
                     slots[k, j] = rng.Next(LOW_NUMBER, HIGH_NUMBER);
                 }
+
                 slots[0, 0] = 3;
                 slots[0, 1] = 3;
                 slots[0, 2] = 3;
+                if (slots[0, 0] == slots[2, 2]) ;
+            }
 
-                Console.WriteLine("\nSlot Machine:");
+            Console.WriteLine("\nSlot Machine:");
                 
                 for (int i = 0; i < ROWS; i++)
                 {
@@ -87,7 +90,7 @@ namespace MyApp
         }
 
     }
-}
+
     
 
 
