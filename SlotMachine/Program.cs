@@ -31,10 +31,10 @@ namespace MyApp
                     slots[k, j] = rng.Next(LOW_NUMBER, HIGH_NUMBER);
                 }
 
-                slots[0, 0] = 3;
-                slots[0, 1] = 3;
-                slots[0, 2] = 3;
-                if (slots[0, 0] == slots[2, 2]) ;
+                if (slots[0, 0] == slots[0, 1] && slots[0, 0] == slots[0, 2])
+                {
+                    continue;
+                }
             }
 
             Console.WriteLine("\nSlot Machine:");
