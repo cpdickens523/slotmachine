@@ -1,6 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
 
+using System;
+using System.ComponentModel;
+
 namespace MyApp
 {
     internal class Program
@@ -8,88 +11,114 @@ namespace MyApp
         static void Main(string[] args)
         {
             Random rng = new Random();
-            const int ROWS = 3;
-            const int COLUMNS = 3;
+             int ROWS = rng.Next(1, 100);; 
+             int COLUMNS = rng.Next(1, 100);
             const int LOW_NUMBER = 1;
-            const int HIGH_NUMBER = 10;
+            const int HIGH_NUMBER = 4;
+
+            const int FIRST_CHOICE = 1;
+            const int SECOND_CHOICE = 2;
+            const int THIRD_CHOICE = 3;
 
             int[,] slots = new int[ROWS, COLUMNS];
-           
-
 
             Console.WriteLine("Please play the Slot Machine");
             Console.WriteLine("Press 1 for horizontal win");
             Console.WriteLine("Press 2 for vertical win");
             Console.WriteLine("Press 3 for diagonal win");
             int choice = int.Parse(Console.ReadLine());
-
-
-            for (int k = 0; k < ROWS; k++)
+            
+            for (int i = 0; i < ROWS; i++)
             {
                 for (int j = 0; j < COLUMNS; j++)
                 {
-                    slots[k, j] = rng.Next(LOW_NUMBER, HIGH_NUMBER);
-                }
-
-                if (slots[0, 0] == slots[0, 1] && slots[0, 0] == slots[0, 2])
-                {
-                    continue;
+                    slots[i, j] = rng.Next(LOW_NUMBER, HIGH_NUMBER);
                 }
             }
-
             Console.WriteLine("\nSlot Machine:");
-                
+            for (int i = 0; i < ROWS; i++)
+            {
+                for (int j = 0; j < COLUMNS; j++)
+                {
+                    Console.Write(slots[i, j].ToString().PadLeft(4));
+                }
+                Console.WriteLine();
+            }
+            bool isWin = false;
+
+            if (choice == FIRST_CHOICE)
+            {
                 for (int i = 0; i < ROWS; i++)
                 {
-                    for (int j = 0; j < COLUMNS; j++)
+                    bool rowWin = true;
+                    for (int j = 1; j < COLUMNS; j++)
                     {
-                        Console.Write(slots[i, j].ToString().PadLeft(4));
-                    }
-
-                    Console.WriteLine();
-                }
-
-                bool isWin = false;
-                if (choice == 1)
-                {
-                    for (int i = 0; i < ROWS; i++)
-                    {
-                        if (slots[i, 0] == slots[i, 1] && slots[i, 1] == slots[i, 2])
+                        if (slots[i, j] != slots[i, 0])
                         {
-                            isWin = true;
+                            rowWin = false;
                             break;
                         }
                     }
-                }
-
-                else if (choice == 2)
-                {
-                    for (int j = 0; j < COLUMNS; j++)
-                    {
-                        if (slots[j, 0] == slots[j, 1] && slots[j, 1] == slots[j, 2])
-                        {
-                            isWin = true;
-                            break;
-                        }
-                    }
-                    
-                }
-                else if (choice == 3)
-
-                    if ((slots[0, 0] == slots[1, 1] && slots[1, 1] == slots[2, 2]) ||
-
-                        (slots[0, 2] == slots[1, 1] && slots[1, 1] == slots[2, 0]))
+                    if (rowWin)
                     {
                         isWin = true;
+                        break;
                     }
+                }
+            }
+            else if (choice == SECOND_CHOICE)
+            {
+                for (int j = 0; j < COLUMNS; j++)
+                {
+                    bool colWin = true;
+                    for (int i = 1; i < ROWS; i++)
+                    {
+                        if (slots[i, j] != slots[0, j])
+                        {
+                            colWin = false;
+                            break;
+                        }
+                    }
+                    if (colWin)
+                    {
+                        isWin = true;
+                        break;
+                    }
+                }
+            }
+            else if (choice == THIRD_CHOICE)
+            {
+                bool mainDiagonalWin = true;
+                for (int i = 1; i < ROWS; i++)
+                {
+                    if (slots[i, i] != slots[0, 0])
+                    {
+                        mainDiagonalWin = false;
+                        break;
+                    }
+                }
 
-                Console.WriteLine(isWin ? "\n Congratulations, you win!" : "\nTry again!");
+                bool antiDiagonalWin = true;
+                for (int i = 1; i < ROWS; i++)
+                {
+                    if (slots[i, COLUMNS - 1 - i] != slots[0, COLUMNS - 1])
+                    {
+                        antiDiagonalWin = false;
+                        break;
+                    }
+                }
 
+                if (mainDiagonalWin || antiDiagonalWin)
+                {
+                    isWin = true;
+                }
             }
 
+            Console.WriteLine(isWin ? "\n🎉 Congratulations, you win!" : "\n❌ Try again!");
         }
-
     }
+}
+
 
     
 
