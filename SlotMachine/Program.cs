@@ -11,8 +11,10 @@ namespace MyApp
         static void Main(string[] args)
         {
             Random rng = new Random();
-             int ROWS = rng.Next(1, 100);; 
-             int COLUMNS = rng.Next(1, 100);
+            const int LOWER_NUMBER = 3;
+            const int HIGHER_NUMBER = 3;
+             int ROWS = rng.Next(LOWER_NUMBER, HIGHER_NUMBER);
+             int COLUMNS = rng.Next(LOWER_NUMBER, HIGHER_NUMBER);
             const int LOW_NUMBER = 1;
             const int HIGH_NUMBER = 4;
 
