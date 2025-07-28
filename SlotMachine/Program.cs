@@ -3,6 +3,7 @@ using System;
 
 using System;
 using System.ComponentModel;
+using System.Net;
 
 namespace MyApp
 {
@@ -13,23 +14,29 @@ namespace MyApp
             Random rng = new Random();
             const int LOWER_NUMBER = 3;
             const int HIGHER_NUMBER = 3;
-             int ROWS = rng.Next(LOWER_NUMBER, HIGHER_NUMBER);
-             int COLUMNS = rng.Next(LOWER_NUMBER, HIGHER_NUMBER);
+            int ROWS = rng.Next(LOWER_NUMBER, HIGHER_NUMBER);
+            int COLUMNS = rng.Next(LOWER_NUMBER, HIGHER_NUMBER);
             const int LOW_NUMBER = 1;
             const int HIGH_NUMBER = 4;
 
-            const int FIRST_CHOICE = 1;
-            const int SECOND_CHOICE = 2;
-            const int THIRD_CHOICE = 3;
+            const int HORIZONTAL_MODE = 1;
+            const int VERTICAL_MODE = 2;
+            const int DIAGONAL_MODE = 3;
 
             int[,] slots = new int[ROWS, COLUMNS];
 
             Console.WriteLine("Please play the Slot Machine");
-            Console.WriteLine("Press 1 for horizontal win");
-            Console.WriteLine("Press 2 for vertical win");
-            Console.WriteLine("Press 3 for diagonal win");
+            Console.WriteLine($"Press {HORIZONTAL_MODE} for horizontal win");
+            Console.WriteLine($"Press {VERTICAL_MODE} for vertical win");
+            Console.WriteLine($"Press {DIAGONAL_MODE} for diagonal win");
             int choice = int.Parse(Console.ReadLine());
             
+
+            if (choice != 1 && choice != 2 && choice != 3)
+                Console.WriteLine("This choice is invalid. Please try again.");
+           
+
+
             for (int i = 0; i < ROWS; i++)
             {
                 for (int j = 0; j < COLUMNS; j++)
@@ -48,7 +55,7 @@ namespace MyApp
             }
             bool isWin = false;
 
-            if (choice == FIRST_CHOICE)
+            if (choice == HORIZONTAL_MODE)
             {
                 for (int i = 0; i < ROWS; i++)
                 {
@@ -68,7 +75,7 @@ namespace MyApp
                     }
                 }
             }
-            else if (choice == SECOND_CHOICE)
+            else if (choice == VERTICAL_MODE)
             {
                 for (int j = 0; j < COLUMNS; j++)
                 {
@@ -88,7 +95,7 @@ namespace MyApp
                     }
                 }
             }
-            else if (choice == THIRD_CHOICE)
+            else if (choice == DIAGONAL_MODE)
             {
                 bool mainDiagonalWin = true;
                 for (int i = 1; i < ROWS; i++)
