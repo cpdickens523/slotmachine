@@ -3,6 +3,7 @@ using System;
 
 using System;
 using System.ComponentModel;
+using System.Data;
 using System.Net;
 
 namespace MyApp
@@ -19,6 +20,7 @@ namespace MyApp
             const int LOW_NUMBER = 1;
             const int HIGH_NUMBER = 4;
 
+
             const int HORIZONTAL_MODE = 1;
             const int VERTICAL_MODE = 2;
             const int DIAGONAL_MODE = 3;
@@ -30,11 +32,12 @@ namespace MyApp
             Console.WriteLine($"Press {VERTICAL_MODE} for vertical win");
             Console.WriteLine($"Press {DIAGONAL_MODE} for diagonal win");
             int choice = int.Parse(Console.ReadLine());
-            
+
 
             if (choice != 1 && choice != 2 && choice != 3)
-                Console.WriteLine("This choice is invalid. Please try again.");
-           
+                Console.WriteLine("Do user input until choice is valid.");
+
+
 
 
             for (int i = 0; i < ROWS; i++)
@@ -44,6 +47,7 @@ namespace MyApp
                     slots[i, j] = rng.Next(LOW_NUMBER, HIGH_NUMBER);
                 }
             }
+
             Console.WriteLine("\nSlot Machine:");
             for (int i = 0; i < ROWS; i++)
             {
@@ -51,8 +55,19 @@ namespace MyApp
                 {
                     Console.Write(slots[i, j].ToString().PadLeft(4));
                 }
+
                 Console.WriteLine();
             }
+
+
+
+
+            for (int i = 2; i < 3; i++)
+            {
+                Console.WriteLine("Current chances left value: " + i);
+            }
+
+
             bool isWin = false;
 
             if (choice == HORIZONTAL_MODE)
@@ -68,6 +83,7 @@ namespace MyApp
                             break;
                         }
                     }
+
                     if (rowWin)
                     {
                         isWin = true;
@@ -88,6 +104,7 @@ namespace MyApp
                             break;
                         }
                     }
+
                     if (colWin)
                     {
                         isWin = true;
@@ -120,13 +137,42 @@ namespace MyApp
                 if (mainDiagonalWin || antiDiagonalWin)
                 {
                     isWin = true;
+                    Console.WriteLine("🎉 Congratulations, you win!");
+                }
+
+                if (mainDiagonalWin || antiDiagonalWin)
+                {
+                    isWin = false;
                 }
             }
 
-            Console.WriteLine(isWin ? "\n🎉 Congratulations, you win!" : "\n❌ Try again!");
+            Console.WriteLine("Sorry, you  don't win!");
+
+            bool Repeatprogram = true;
+            while (Repeatprogram)
+            {
+                Console.WriteLine("This code will repeat.");
+                Console.Write("Do you want to run again? (yes/no): ");
+                string input = Console.ReadLine().ToLower();
+
+                if (input == "no")
+                {
+                    Repeatprogram = true;
+                }
+
+                if (input == "yes")
+                {
+                    Repeatprogram = false;
+
+                }
+
+                Console.ReadLine();
+                break;
+            }
         }
     }
 }
+
 
 
     
