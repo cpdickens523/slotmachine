@@ -19,6 +19,7 @@ namespace MyApp
             int COLUMNS = rng.Next(LOWER_NUMBER, HIGHER_NUMBER);
             const int LOW_NUMBER = 1;
             const int HIGH_NUMBER = 4;
+            const string RUN_AGAIN = "Y";
 
 
             const int HORIZONTAL_MODE = 1;
@@ -151,27 +152,35 @@ namespace MyApp
             bool Repeatprogram = true;
             while (Repeatprogram)
             {
-                Console.WriteLine("This code will repeat.");
-                Console.Write("Do you want to run again? (yes/no): ");
+                Console.WriteLine("Let's play again.");
+                Console.Write($"Do you want to run again? Press {RUN_AGAIN}" + "     ");
                 string input = Console.ReadLine().ToLower();
 
-                if (input == "no")
+                if (input == "Y")
+                {
+                    Repeatprogram = false;
+                }
+
+                else
                 {
                     Repeatprogram = true;
                 }
 
-                if (input == "yes")
+                bool rerunLoop = true;
+                while (rerunLoop)
                 {
-                    Repeatprogram = false;
+                    for (int i = 0; i < 3; i += 1)
+                    {
+                        Console.WriteLine($"Iteration {i}");
 
+                        Console.WriteLine($"Current chances left value are {i}");
+                    }
                 }
-
-                Console.ReadLine();
-                break;
             }
         }
     }
 }
+
 
 
 
