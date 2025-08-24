@@ -12,8 +12,8 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
-            int bigLoop = 1;
-            while (bigLoop < 3)
+            bool bigLoop = false;
+            for (int o = 0; o < 3; o++)
             {
                 Random rng = new Random();
                 const int LOWER_NUMBER = 3;
@@ -39,7 +39,7 @@ namespace MyApp
 
 
                 {
-                    if (choice != 1 && choice != 2 && choice != 3)
+                    if (choice != HORIZONTAL_MODE && choice != VERTICAL_MODE && choice != DIAGONAL_MODE)
                         Console.WriteLine("Do user input until choice is valid.");
                     {
 
@@ -68,13 +68,16 @@ namespace MyApp
                             for (int i = 2; i < 3; i++)
 
                                 Console.WriteLine("Current chances left value: " + i);
-                            Console.WriteLine("Please play the Slot Machine");
-                            Console.WriteLine($"Press {HORIZONTAL_MODE} for horizontal win");
-                            Console.WriteLine($"Press {VERTICAL_MODE} for vertical win");
-                            Console.WriteLine($"Press {DIAGONAL_MODE} for diagonal win");
-                            Console.ReadLine();
-
-
+                            Console.Write($"Do you want to run again? Press {RUN_AGAIN}" + Environment.NewLine);
+                            string inputY = Console.ReadLine();
+                            if (inputY == RUN_AGAIN)
+                            {
+                                Console.WriteLine($"Press {HORIZONTAL_MODE} for horizontal win");
+                                Console.WriteLine($"Press {VERTICAL_MODE} for vertical win");
+                                Console.WriteLine($"Press {DIAGONAL_MODE} for diagonal win");
+                                Console.ReadLine();  
+                            }
+                            
                             if (choice == HORIZONTAL_MODE)
 
                             {
