@@ -65,18 +65,6 @@ namespace MyApp
 
 
                             bool isWin = false;
-                            for (int i = 2; i < 3; i++)
-
-                                Console.WriteLine("Current chances left value: " + i);
-                            Console.Write($"Do you want to run again? Press {RUN_AGAIN}" + Environment.NewLine);
-                            string inputY = Console.ReadLine();
-                            if (inputY == RUN_AGAIN)
-                            {
-                                Console.WriteLine($"Press {HORIZONTAL_MODE} for horizontal win");
-                                Console.WriteLine($"Press {VERTICAL_MODE} for vertical win");
-                                Console.WriteLine($"Press {DIAGONAL_MODE} for diagonal win");
-                                Console.ReadLine();  
-                            }
                             
                             if (choice == HORIZONTAL_MODE)
 
