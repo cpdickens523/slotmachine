@@ -23,12 +23,13 @@ namespace MyApp
                 const int LOW_NUMBER = 1;
                 const int HIGH_NUMBER = 4;
                 const string RUN_AGAIN = "Y";
-
+                
 
                 const int HORIZONTAL_MODE = 1;
                 const int VERTICAL_MODE = 2;
                 const int DIAGONAL_MODE = 3;
-
+                
+                
                 int[,] slots = new int[ROWS, COLUMNS];
 
                 Console.WriteLine("Please play the Slot Machine");
@@ -142,8 +143,16 @@ namespace MyApp
                                 {
                                     isWin = false;
                                 }
+                                Console.Write("Enter Money:");
+                                int Money = Console.Read();
+                                while (Money < 50)
+                                {
+                                    Console.WriteLine($"Current cash value: {Money}");
+                                    Money--; 
+                                }
+                                if (Money > 1)
+                                    Console.WriteLine($"${Money-8}");
                             }
-
                             Console.WriteLine("Sorry, you  don't win!");
                             Console.Write($"Do you want to run again? Press {RUN_AGAIN}" + "     ");
                             Console.ReadLine();
